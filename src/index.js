@@ -1,7 +1,12 @@
 import path from 'path';
 import fs from 'fs';
 
-export const transform = (envs, defaultEnv = 'development', importRelPath, filename) => {
+export const transform = (
+  importRelPath,
+  filename,
+  envs = { production: 'prod', development: 'dev' },
+  defaultEnv = 'development'
+) => {
   const envExt = envs[process.env.NODE_ENV || defaultEnv];
 
   if (typeof envExt === 'undefined') {
@@ -28,20 +33,13 @@ export const transform = (envs, defaultEnv = 'development', importRelPath, filen
 export default ({ types }) => {
   return {
     visitor: {
-      ImportDeclaration(nodePath, state) {
-        const envs = state.opts.envMap || {
-          production: 'prod',
-          development: 'dev'
-        };
-
-        const { node } = nodePath;
-
+      ImportDeclaration({ node }, { file, opts }) {
         try {
           node.source = types.stringLiteral(transform(
-            envs,
-            state.opts.defaultEnv,
             node.source.value,
-            state.file.opts.filename
+            file.opts.filename,
+            opts.envMap,
+            opts.defaultEnv
           ));
         } catch (err) {
           // will use default import statement
