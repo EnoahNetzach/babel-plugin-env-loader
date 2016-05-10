@@ -1,13 +1,14 @@
 {
   "name": "babel-plugin-env-loader",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Loads files based on the current NODE_ENV",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": "https://github.com/EnoahNetzach/babel-plugin-env-loader.git",
   "keywords": [
-    "webpack",
+    "babel",
     "loader"
   ],
   "author": "Enoah Netzach",
