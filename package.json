@@ -1,11 +1,12 @@
 {
   "name": "babel-plugin-env-loader",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Loads files based on the current NODE_ENV",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "babel src --out-dir lib"
+    "compile": "babel src --out-dir lib",
+    "prepublish": "npm run compile"
   },
   "repository": "https://github.com/EnoahNetzach/babel-plugin-env-loader.git",
   "keywords": [
